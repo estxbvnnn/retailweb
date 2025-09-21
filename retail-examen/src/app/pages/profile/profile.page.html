@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">Volver</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <style>
+    :host { --ro-primary:#e50914; --ro-dark:#111214; --ro-muted:#2a2d33; --ro-text:#e8e8e8; }
+    ion-content { --background:linear-gradient(180deg, var(--ro-dark) 0%, #000 100%); color:var(--ro-text); }
+    ion-toolbar { --background:#000; --color:var(--ro-text); border-bottom:1px solid var(--ro-muted); }
+    .hero { display:flex; align-items:center; gap:16px; padding:16px 20px; background:linear-gradient(135deg,#000 0%,#15171a 100%); border-bottom:1px solid var(--ro-muted); }
+    .logo { width:56px; height:56px; background:url('/assets/logo.png') center/contain no-repeat; border-radius:10px; box-shadow:0 6px 12px rgba(0,0,0,.35); }
+    .hero-text h1 { margin:0; font-size:20px; font-weight:800; letter-spacing:.4px; color:var(--ro-text); }
+    .hero-text p { margin:4px 0 0; color:#9aa0a6; font-size:12px; }
+    .section { padding:16px 20px; }
+    .card { background:linear-gradient(180deg,#15171a 0%,#0f1113 100%); border:1px solid var(--ro-muted); border-radius:12px; padding:16px; box-shadow:0 10px 20px rgba(0,0,0,.35); }
+    .title { margin:0 0 8px 0; font-size:18px; font-weight:800; }
+    .form { display:grid; gap:12px; margin-top:8px; }
+    .form-field ion-item { --background:rgba(255,255,255,.03); --color:var(--ro-text); --border-color:var(--ro-muted); border-radius:10px; --padding-start:12px; --inner-padding-end:12px; }
+    .actions { display:flex; gap:10px; margin-top:8px; }
+    .btn { width:100%; --border-radius:10px; text-transform:uppercase; letter-spacing:.6px; font-weight:700; transition:transform .15s ease, box-shadow .2s ease, filter .2s ease; }
+    .btn:hover, .btn:focus-visible { transform:translateY(-1px); filter:brightness(1.06); box-shadow:0 12px 22px rgba(229,9,20,.45); }
+    .btn-primary { --background:var(--ro-primary); --background-activated:#b30710; --background-focused:#cc0b15; --box-shadow:0 10px 16px rgba(229,9,20,.35); }
+    .msg { color:#4ade80; font-size:12px; }
+    .err { color:#ff6b6b; font-size:12px; }
+  </style>
+
+  <div class="hero">
+    <div class="logo"></div>
+    <div class="hero-text">
+      <h1>Tu perfil</h1>
+      <p>Actualiza tus datos para una mejor experiencia en RetailOff.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <h2 class="title">Actualizar cuenta</h2>
+      <div class="form">
+        <div class="form-field">
+          <ion-item>
+            <ion-input label="Nombre" label-placement="stacked" [(ngModel)]="nombre" placeholder="Tu nombre"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-field">
+          <ion-item>
+            <ion-input type="email" label="Correo" label-placement="stacked" [(ngModel)]="email" placeholder="tucorreo@dominio.com"></ion-input>
+          </ion-item>
+        </div>
+        <div class="actions">
+          <ion-button class="btn btn-primary" expand="block" (click)="save()" [disabled]="saving || !nombre || !email">
+            {{ saving ? 'Guardando...' : 'Guardar cambios' }}
+          </ion-button>
+        </div>
+        <div *ngIf="msg" class="msg">{{ msg }}</div>
+        <div *ngIf="err" class="err">{{ err }}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

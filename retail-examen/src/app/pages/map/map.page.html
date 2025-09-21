@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ubicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="locate()" [disabled]="loading">
+    {{ loading ? 'Obteniendo...' : 'Obtener ubicación' }}
+  </ion-button>
+
+  <div id="map"></div>
+
+  <ion-list *ngIf="coords">
+    <ion-item>
+      <ion-label>Lat</ion-label>
+      <ion-note slot="end">{{ coords.latitude }}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Lng</ion-label>
+      <ion-note slot="end">{{ coords.longitude }}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-text color="danger" *ngIf="error"><p>{{ error }}</p></ion-text>
+</ion-content>

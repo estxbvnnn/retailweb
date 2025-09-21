@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>RetailOff</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">Logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <style>
+    :root {
+      --ro-primary:#e50914;
+      --ro-dark:#0d0e11;
+      --ro-dark-2:#14161a;
+      --ro-muted:#2a2d33;
+      --ro-text:#e8e8e8;
+      --ro-sub:#9aa0a6;
+      --ro-shadow: 0 10px 20px rgba(0,0,0,.35);
+      --ro-shadow-strong: 0 16px 32px rgba(0,0,0,.45);
+    }
+    ion-content { --background: linear-gradient(180deg, var(--ro-dark) 0%, #000 100%); color: var(--ro-text); }
+    ion-toolbar { --background:#000; --color:var(--ro-text); border-bottom:1px solid var(--ro-muted); }
+
+    /* Hero */
+    .hero {
+      display:flex; align-items:center; gap:16px;
+      padding:20px;
+      background: radial-gradient(1200px 600px at -10% -10%, rgba(229,9,20,.20) 0%, rgba(229,9,20,0) 60%), linear-gradient(135deg,#000 0%, #15171a 100%);
+      border-bottom:1px solid var(--ro-muted);
+    }
+    .logo {
+      width:56px; height:56px; flex: 0 0 56px;
+      background:url('/assets/logo.png') center/contain no-repeat;
+      border-radius:12px; box-shadow: var(--ro-shadow);
+    }
+    .hero-text h1 { margin:0; font-size:22px; font-weight:800; letter-spacing:.4px; color:#fff; }
+    .hero-text p { margin:6px 0 0; color:var(--ro-sub); font-size:13px; line-height:1.45; }
+
+    .section { padding: 18px 20px; display: grid; gap: 16px; }
+
+    /* Card base */
+    .card {
+      background: linear-gradient(180deg, var(--ro-dark-2) 0%, #0f1113 100%);
+      border: 1px solid var(--ro-muted);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--ro-shadow);
+    }
+    .title { margin:0 0 8px 0; font-size:18px; font-weight:800; }
+    .desc { color:#b7bcc4; font-size:13px; line-height:1.55; margin:0; }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .feature {
+      grid-column: span 12;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--ro-muted);
+      border-radius: 12px;
+      padding: 12px;
+      display: grid; gap: 6px;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .feature:hover { transform: translateY(-1px); box-shadow: var(--ro-shadow-strong); background: rgba(255,255,255,.05); }
+    .feature h3 { margin:0; font-size:14px; font-weight:800; color:#fff; }
+    .feature p { margin:0; font-size:12px; color:#b7bcc4; line-height:1.45; }
+    @media (min-width: 520px) {
+      .feature { grid-column: span 6; }
+    }
+    @media (min-width: 800px) {
+      .feature { grid-column: span 4; }
+    }
+
+    /* Actions / Buttons */
+    .actions { display:flex; gap:10px; margin-top:12px; flex-wrap: wrap; }
+    .btn {
+      --border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      font-weight: 700;
+      transition: transform .15s ease, box-shadow .2s ease, filter .2s ease, border-color .2s ease;
+    }
+    .btn:hover, .btn:focus-visible { transform: translateY(-1px); filter: brightness(1.06); box-shadow: 0 12px 22px rgba(229,9,20,.45); }
+    .btn-primary {
+      --background: var(--ro-primary);
+      --background-activated: #b30710;
+      --background-focused: #cc0b15;
+      --box-shadow: 0 10px 16px rgba(229,9,20,.35);
+    }
+    .btn-outline {
+      --background: transparent;
+      --color: var(--ro-primary);
+      border: 1px solid var(--ro-primary);
+      border-radius: 10px;
+    }
+    .btn-outline:hover, .btn-outline:focus-visible {
+      --background: rgba(229,9,20,.08);
+      border-color: #ff4d57;
+    }
+  </style>
+
+  <div class="hero">
+    <div class="logo"></div>
+    <div class="hero-text">
+      <h1>RetailOff</h1>
+      <p>Marketplace de retail con foco en experiencia, precio y servicio.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <!-- Sobre RetailOff -->
+    <div class="card">
+      <h2 class="title">Sobre RetailOff</h2>
+      <p class="desc">
+        Somos una plataforma de retail creada para que compres fácil y rápido. Integramos tecnología
+        de autenticación con Firebase, registro en AWS y Firestore para que tu experiencia sea segura,
+        ágil y personalizada. Explora, escanea tu código y accede a beneficios y gestión de tu cuenta.
+      </p>
+      <div class="actions">
+        <ion-button class="btn btn-primary" routerLink="/profile" expand="block">Editar perfil</ion-button>
+      </div>
+    </div>
+
+    <!-- Ventajas -->
+    <div class="features">
+      <div class="feature">
+        <h3>Ofertas y variedad</h3>
+        <p>Catálogo dinámico con precios competitivos y productos seleccionados.</p>
+      </div>
+      <div class="feature">
+        <h3>Calidad y confianza</h3>
+        <p>Procesos seguros respaldados por Firebase, AWS y prácticas modernas.</p>
+      </div>
+      <div class="feature">
+        <h3>Soporte y rapidez</h3>
+        <p>Flujos simples: registro, validación por QR/código y acceso inmediato.</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

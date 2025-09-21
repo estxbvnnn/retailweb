@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Movimientos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">Salir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Saldo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h1>{{ balance | currency:'USD':'symbol' }}</h1>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="addDummy()">Agregar depósito de prueba</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let t of txs">
+      <ion-label>
+        <h3>{{ t.type }}</h3>
+        <p>{{ t.createdAt | date:'short' }}</p>
+      </ion-label>
+      <ion-note slot="end" [color]="t.amount >= 0 ? 'success' : 'danger'">
+        {{ t.amount | currency:'USD':'symbol' }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

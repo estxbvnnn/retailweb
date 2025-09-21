@@ -1,0 +1,22 @@
+name: pmp-video-deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Disparar deploy vía API Gateway
+        env:
+          URL: https://7pgdn5q476.execute-api.us-east-1.amazonaws.com/pmp-video-deploy
+          API_GATEWAY_KEY: ${{ secrets.API_GATEWAY_KEY }}
+        run: |
+          set -e
+          if [ -n "$API_GATEWAY_KEY" ]; then
+            curl -sS -X POST "$URL" -H "x-api-key: $API_GATEWAY_KEY"
+          else
+            curl -sS -X POST "$URL"
+          fi
